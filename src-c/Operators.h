@@ -9,13 +9,13 @@
 #include "modelGrid.h"
 
 class Operators  {
-	
+
 public:
-	
-	//Operators(modelGrid inputGrid);
-	
+
+        //Operators(modelGrid inputGrid);
+
 private:
-	
-	modelGrid fieldGrid;
-	
+
+        modelGrid fieldGrid;
+
 };

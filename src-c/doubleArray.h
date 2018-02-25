@@ -14,28 +14,28 @@
 class doubleArray  {
 
 public:
-    
+
     //////////////////////////////////////////////////////
     //Constructors
     //////////////////////////////////////////////////////
-	
+
     doubleArray(int nX, int nY);
     doubleArray(char * inputFileName, int nX, int nY);
-    doubleArray(const doubleArray &a);  
+    doubleArray(const doubleArray &a);
     doubleArray();
-	
+
     //////////////////////////////////////////////////////
     //Destructor
     //////////////////////////////////////////////////////
-	
+
      ~doubleArray();
-	
+
      //////////////////////////////////////////////////////
      //Setters
      //////////////////////////////////////////////////////
      double& operator()(int iX, int iY);
      doubleArray& operator=(const doubleArray& rhs);
-	
+
      void setSize(int nX, int nY);
      //////////////////////////////////////////////////////
      //Getters
@@ -43,19 +43,19 @@ public:
 
      int getNumX();
      int getNumY();
-	
+
      //////////////////////////////////////////////////////
      //Utilities
      //////////////////////////////////////////////////////
-	
+
       bool WriteData(char * fileName);
-	
+
 private:
-	
+
     int numCols;
     int numRows;
 
     double * dataArray;
     void copyArray(const doubleArray& a);
-	
+
 };

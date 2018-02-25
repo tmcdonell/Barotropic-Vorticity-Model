@@ -11,119 +11,119 @@
 #include <stdlib.h>
 #include "modelGrid.h"
 
-modelGrid::modelGrid(int nX, int nY, double dX, double dY)	
+modelGrid::modelGrid(int nX, int nY, double dX, double dY)
 {
-	//////////////////////////////////////////////////////
-	//Instantiate class variables
-	//////////////////////////////////////////////////////
-	
-	deltaX = dX;
-	deltaY = dY;
-	
-	numX = nX;
-	numY = nY;
-	
-	//////////////////////////////////////////////////////
-	//Set up model grid
-	//////////////////////////////////////////////////////
-	
-	
-	xArray = new double [numX];
-	yArray = new double [numY];
-	
-	for(int iX=0; iX < numX; iX++)	{
-		xArray[iX] = ((double) iX )* deltaX;
-	}
-	
-	for(int iY=0; iY < numY; iY++)	{
-		yArray[iY] = ((double) iY ) * deltaY;
-	}
-	
-	
-	
-	
-	
+        //////////////////////////////////////////////////////
+        //Instantiate class variables
+        //////////////////////////////////////////////////////
+
+        deltaX = dX;
+        deltaY = dY;
+
+        numX = nX;
+        numY = nY;
+
+        //////////////////////////////////////////////////////
+        //Set up model grid
+        //////////////////////////////////////////////////////
+
+
+        xArray = new double [numX];
+        yArray = new double [numY];
+
+        for(int iX=0; iX < numX; iX++)  {
+                xArray[iX] = ((double) iX )* deltaX;
+        }
+
+        for(int iY=0; iY < numY; iY++)  {
+                yArray[iY] = ((double) iY ) * deltaY;
+        }
+
+
+
+
+
 } //End: modelGrid(int nX, int nY, double dX, double dY);
 
-modelGrid::modelGrid(int nX, int nY, double delta)	
+modelGrid::modelGrid(int nX, int nY, double delta)
 {
-	//////////////////////////////////////////////////////
-	//Instantiate class variables
-	//////////////////////////////////////////////////////
-	
-	deltaX = delta;
-	deltaY = delta;
-	
-	numX = nX;
-	numY = nY;
-	
-	//////////////////////////////////////////////////////
-	//Set up model grid
-	//////////////////////////////////////////////////////
-	
-	
-	xArray = new double [numX];
-	yArray = new double [numY];
-	
-	for(int iX=0; iX < numX; iX++)	{
-		xArray[iX] = ((double) iX )* deltaX;
-	}
-	
-	for(int iY=0; iY < numY; iY++)	{
-		yArray[iY] = ((double) iY ) * deltaY;
-	}
-	
-	
-	
-	
-	
+        //////////////////////////////////////////////////////
+        //Instantiate class variables
+        //////////////////////////////////////////////////////
+
+        deltaX = delta;
+        deltaY = delta;
+
+        numX = nX;
+        numY = nY;
+
+        //////////////////////////////////////////////////////
+        //Set up model grid
+        //////////////////////////////////////////////////////
+
+
+        xArray = new double [numX];
+        yArray = new double [numY];
+
+        for(int iX=0; iX < numX; iX++)  {
+                xArray[iX] = ((double) iX )* deltaX;
+        }
+
+        for(int iY=0; iY < numY; iY++)  {
+                yArray[iY] = ((double) iY ) * deltaY;
+        }
+
+
+
+
+
 } //End: modelGrid(int nX, int nY, double delta);
 
 
 
-modelGrid::~modelGrid()	
+modelGrid::~modelGrid()
 {
 
-	delete [] yArray;
-	delete [] xArray;
-	
+        delete [] yArray;
+        delete [] xArray;
+
 } //End: destructor
 
 
-double modelGrid::getX(int iX)	{
-	
-	if((0 <= iX) && (numX > iX))
-		return xArray[iX];
-	else {
-		return NULL;
-	}
+double modelGrid::getX(int iX)  {
+
+        if((0 <= iX) && (numX > iX))
+                return xArray[iX];
+        else {
+                return NULL;
+        }
 
 
 }  //End getX
 
-double modelGrid::getY(int iY)	{
-	
-	if((0 <= iY) && (numY > iY))
-		return xArray[iY];
-	else {
-		return NULL;
-	}
-	
-	
+double modelGrid::getY(int iY)  {
+
+        if((0 <= iY) && (numY > iY))
+                return xArray[iY];
+        else {
+                return NULL;
+        }
+
+
 }
-double modelGrid::nXgrid()	{
-	return numX;
+double modelGrid::nXgrid()      {
+        return numX;
 }
 
-double modelGrid::nYgrid()	{
-	return numY;
+double modelGrid::nYgrid()      {
+        return numY;
 }
 
-double modelGrid::getDeltaX()	{
-	return deltaX;
+double modelGrid::getDeltaX()   {
+        return deltaX;
 }
 
-double modelGrid::getDeltaY()	{
-	return deltaY;
+double modelGrid::getDeltaY()   {
+        return deltaY;
 }
 

@@ -9,8 +9,8 @@
 
 #include "Operators.h"
 
-//Operators :: Operators(modelGrid inputGrid)	{
-	
-	
-	
+//Operators :: Operators(modelGrid inputGrid)   {
+
+
+
 //}

@@ -15,35 +15,35 @@
 //////////////////////////////////////////////////////
 
 
-doubleArray::doubleArray(int nX, int nY)	{
-	
+doubleArray::doubleArray(int nX, int nY)        {
+
     numCols = nX;
     numRows = nY;
-	
+
     dataArray = new double [numRows * numCols];
-	
-     for(int index=0; index < numRows*numCols; index++)	{
-		dataArray[index] = 0; 
+
+     for(int index=0; index < numRows*numCols; index++) {
+                dataArray[index] = 0;
       }
-	
-	
-	
+
+
+
 } //End: doubleArray(int nX, int nY);
 
-doubleArray::doubleArray()	{
+doubleArray::doubleArray()      {
 
     numRows = 1;
     numCols = 1;
-	
+
     dataArray = new double [1];
     dataArray[0] = 0;
 
 } //End doubleArray()
 
 
-doubleArray::doubleArray(char * inputFileName, int nX, int nY)	{
+doubleArray::doubleArray(char * inputFileName, int nX, int nY)  {
     using namespace std;
-	
+
     FILE *inputFILE = fopen(inputFileName,"r");
     float inputNumber;
     numCols = nX;
@@ -53,15 +53,15 @@ doubleArray::doubleArray(char * inputFileName, int nX, int nY)	{
     cout << inputFileName << endl;
 
 
-	
-    for(int iY=0; iY < numRows; iY++)	{
-        for(int iX=0; iX < numCols; iX++)	{
-            cout << "iX: " << iX << endl;		
-	     
-            fscanf(inputFILE, "%f", &inputNumber);	
-	    cout << "number: " << inputNumber;
+
+    for(int iY=0; iY < numRows; iY++)   {
+        for(int iX=0; iX < numCols; iX++)       {
+            cout << "iX: " << iX << endl;
+
+            fscanf(inputFILE, "%f", &inputNumber);
+            cout << "number: " << inputNumber;
             dataArray[((iY*numCols) + iX)] = inputNumber;
-	}
+        }
     }
 
     fclose(inputFILE);
@@ -69,14 +69,14 @@ doubleArray::doubleArray(char * inputFileName, int nX, int nY)	{
 } //End doubleArray(char * inputFileName)
 
 
-doubleArray::doubleArray(const doubleArray &a)	{
-	
+doubleArray::doubleArray(const doubleArray &a)  {
+
     numRows = a.numRows;
     numCols = a.numCols;
     dataArray = new double [numRows * numCols];
-	
+
     this->copyArray(a);
-	
+
 }  //End doubleArray(const doubleArray& a)
 
 //////////////////////////////////////////////////////
@@ -84,10 +84,10 @@ doubleArray::doubleArray(const doubleArray &a)	{
 //////////////////////////////////////////////////////
 
 
-doubleArray:: ~doubleArray()	{
-	
+doubleArray:: ~doubleArray()    {
+
     delete [] dataArray;
-	
+
 } //End destructor
 
 //////////////////////////////////////////////////////
@@ -95,26 +95,26 @@ doubleArray:: ~doubleArray()	{
 //////////////////////////////////////////////////////
 
 
-double& doubleArray :: operator()(int iX, int iY)	{
-	
-	 
+double& doubleArray :: operator()(int iX, int iY)       {
+
+
     return dataArray[((iY*numCols) + iX)];
-	
+
 }
 
-doubleArray& doubleArray :: operator=(const doubleArray& rhs)	{
-	
-    if(dataArray != rhs.dataArray)	{
+doubleArray& doubleArray :: operator=(const doubleArray& rhs)   {
+
+    if(dataArray != rhs.dataArray)      {
         setSize(rhs.numCols, rhs.numRows);
-	copyArray(rhs);
+        copyArray(rhs);
     }
-	
+
     return *this;
-} //End 
+} //End
 
 
-void doubleArray :: setSize(int nX, int nY)	{
-    
+void doubleArray :: setSize(int nX, int nY)     {
+
     delete [] dataArray;
     numRows = nY;
     numCols = nX;
@@ -126,26 +126,26 @@ void doubleArray :: setSize(int nX, int nY)	{
 //////////////////////////////////////////////////////
 
 
-int doubleArray :: getNumX()	{
+int doubleArray :: getNumX()    {
 
     return numCols;
 
 }
 
-int doubleArray :: getNumY()	{
-		
+int doubleArray :: getNumY()    {
+
     return numRows;
 
 }
 
-void doubleArray :: copyArray(const doubleArray& a)	{
+void doubleArray :: copyArray(const doubleArray& a)     {
 
-		
+
     double *temp = dataArray + (numCols * numRows);
-    double *input = a.dataArray + (numCols * numRows); 
-	
+    double *input = a.dataArray + (numCols * numRows);
+
     while(temp>dataArray) {
-	*--temp = *--input;
+        *--temp = *--input;
     }
 }
 
@@ -154,30 +154,30 @@ void doubleArray :: copyArray(const doubleArray& a)	{
 //////////////////////////////////////////////////////
 
 
-bool doubleArray :: WriteData(char * fileName)	{
-	
+bool doubleArray :: WriteData(char * fileName)  {
+
     bool outputGood = true;
     using namespace std;
-	
+
     ofstream dataFile;
     dataFile.open(fileName, ios::out);
-    if(dataFile.good())	{
-        for(int iY =0; iY < numRows; iY++)	{
-	    for(int iX=0; iX < numCols; iX++)	{
-		dataFile << dataArray[(iY*numCols)+iX];
-		    if(iX != numCols-1)	{
-			dataFile << ", "; 
-		    }
-		}
+    if(dataFile.good()) {
+        for(int iY =0; iY < numRows; iY++)      {
+            for(int iX=0; iX < numCols; iX++)   {
+                dataFile << dataArray[(iY*numCols)+iX];
+                    if(iX != numCols-1) {
+                        dataFile << ", ";
+                    }
+                }
             dataFile << "\n";
-	    }
+            }
     }
-	
+
     else {
         outputGood = false;
     }
 
     dataFile.close();
     return outputGood;
-	
+
 }// End WriteData
