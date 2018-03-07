@@ -42,10 +42,10 @@ packages:
 # (e.g., acme-missiles-0.3)
 extra-deps:
 - git:    https://github.com/tmcdonell/accelerate.git
-  commit: 2571d72e7f987033f2bbddd4d24295f5a46257ce
+  commit: 026ec2a55fce338ebe35a263776b6f9250241d37
 
 - git:    https://github.com/tmcdonell/accelerate-llvm.git
-  commit: c1e241634c2b9e18c5023ea04e7aeb147a683abc
+  commit: 05cb0ca7d12cd25fbe1fae94924550a23a98bc24
   subdirs:
     - 'accelerate-llvm'
     - 'accelerate-llvm-native'
