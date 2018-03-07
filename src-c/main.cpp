@@ -32,10 +32,10 @@ int main (int argc, char * const argv[]) {
 
     const double deltaT = 15 * 60;
     char inputStreamFunctionFileName[256];
-    strcpy(inputStreamFunctionFileName, "/home/cchlod/Barotropic_Vorticity_Model/BarotropicVorticityModel/barotropic_streamfunction_input.dat");
+    strcpy(inputStreamFunctionFileName, "../data/barotropic_streamfunction_input.dat");
 
     char outputFileNameBase[256];
-    strcpy(outputFileNameBase, "/home/cchlod/Barotropic_Vorticity_Model/BarotropicVorticityModel/output/streamFunctionOut_");
+    strcpy(outputFileNameBase, "out/streamFunctionOut_");
 
     double forecastTime = 144 * 3600;
     int numTimeSteps = forecastTime / deltaT;
@@ -315,7 +315,7 @@ void SolvePoissonSOR(doubleArray &variable, doubleArray &rhs, modelGrid &grid, d
         //      }
 
         if(changeSum < relTol)  {
-            std::cout << "Convergence after: " << iT << "iterations" << std::endl;
+            std::cout << "Convergence after: " << iT << " iterations" << std::endl;
             break;
         }
 
