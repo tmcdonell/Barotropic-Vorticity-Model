@@ -29,8 +29,10 @@ executable barotropic-vorticity
   build-depends:
         base                        >= 4.7 && < 5
       , accelerate                  >= 1.0
+      , lens
       , lens-accelerate
       , linear-accelerate
+      , text
 
   ghc-options:
       -O2

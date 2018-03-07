@@ -21,6 +21,25 @@ import Data.Array.Accelerate
 import Data.Array.Accelerate.Control.Lens
 
 
+type State a = (Field a, Field a, Field a)
+
+step :: forall a. (Ord a, Fractional a, FromIntegral Int a)
+     => Exp a
+     -> Exp a
+     -> Exp a
+     -> Exp a
+     -> Exp a
+     -> Exp a
+     -> Acc (State a)
+     -> Acc (State a)
+step dx dy dt beta omega relTol (unlift -> (prev, curr, psi)) =
+  let
+      next = advance dx dy dt beta psi prev curr
+      psi' = poisson relTol omega dx dy psi next
+  in
+  lift (curr, next, psi')
+
+
 -- Laplacian operator
 --
 -- src-c/main.cpp:122
@@ -103,6 +122,13 @@ arakawa dx dy var1 var2 = stencil2 update wrap var1 wrap var2
 --
 -- src-c/main.cpp:264
 --
+-- TODO:
+--   - this is currently using Jacobi iteration, since we always refer to the
+--     old values. ugh, I forgot about mutability when looking at the C code |:
+--
+--   - we may want to split this up to do the iteration on the Haskell side
+--     (e.g. to get the iteration count out)
+--
 poisson
     :: forall a. (Ord a, Fractional a, FromIntegral Int a)
     => Exp a
@@ -113,7 +139,7 @@ poisson
     -> Acc (Field a)
     -> Acc (Field a)
 poisson relTol omega dx dy var0 rhs
-  = view _3
+  = view _3     -- lift $ view (runGetter $ (,) <$> view _1 <*> view _3)
   $ awhile
       (view _2)                                     -- while this returns True...
       (\st ->                                       -- ...keep executing this update function
